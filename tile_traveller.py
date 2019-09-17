@@ -5,7 +5,7 @@
 def north(first,second) :
     if second < 3 :
         second += 1 
-    
+
     return first, second
 
 def south(first,second) :
@@ -17,7 +17,7 @@ def south(first,second) :
 def west(first,second) :
     if first > 1 :
         first -= 1 
-    
+
     return first, second
 
 def east(first,second) :
@@ -26,25 +26,16 @@ def east(first,second) :
 
     return first, second
 
-def update_position(choice, first, second):
-    if choice == "n":
-        second += 1
-    elif choice == "s":
-        second -= 1
-    elif choice == "e":
-        first += 1
-    elif choice == "w":
-        first -= 1
-
-    return first, second
 
 def read_choice():
-    choice = input("Direction: ")
+    choice = input("Direction: ").lower()
 
     return choice
 
 def get_valid_direction(first, second):
-    if second == 1:
+    if first == 1 and second == 1:
+        print("You can travel: (N)orth")
+    elif first == 2 and second == 1:
         print("You can travel: (N)orth")
     elif first == 1 and second == 2:
         print("You can travel: (N)orth or (E)ast or (S)outh")
@@ -64,3 +55,23 @@ def get_valid_direction(first, second):
         print("Not a valid direction!")
 
     return first, second
+
+def main():
+    first = 1
+    second = 1
+
+    victory = False
+
+    while victory == False:
+        valid_direction = get_valid_direction(first, second)
+        choice = read_choice()
+
+        if choice == "n":
+            north(first, second)
+        elif choice == "s":
+            south(first, second)
+        elif choice == "w":
+            west(first, second)
+        elif choice == "e":
+            east(first, second)
+main()
